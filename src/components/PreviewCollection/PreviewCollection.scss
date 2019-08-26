@@ -1,0 +1,20 @@
+.collection-preview {
+  //border: 1px solid #000;
+  //height: 100%;
+  h1 {
+    background-color: bisque;
+  }
+  .preview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1em;
+    .card {
+      display: flex;
+      flex-direction: column;
+
+      height: 250px;
+      text-align: center;
+      border: 1px solid #000;
+    }
+  }
+}
