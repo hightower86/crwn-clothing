@@ -8,7 +8,14 @@ export default class Shop extends Component {
     collections: SHOP_DATA
   };
   render() {
-    const { collections } = this.data;
-    return <div className='shop-page'>{collections.map()}</div>;
+    const { collections } = this.state;
+    console.log(collections);
+    return (
+      <div className='shop-page'>
+        {collections.map(({ id, title }) => (
+          <div key={id}>{title}</div>
+        ))}
+      </div>
+    );
   }
 }
