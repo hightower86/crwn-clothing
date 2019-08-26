@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import MenuItem from '../MenuItem';
 
 import './Directory.scss';
-
 class Directory extends Component {
   constructor(props) {
     super(props);
