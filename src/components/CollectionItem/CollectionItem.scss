@@ -1,7 +1,7 @@
 .collection-item {
   width: 22%;
-  display: flex;
-  flex-direction: column;
+  //display: flex;
+  //flex-direction: column;
   height: 350px;
   align-items: center;
   .image {
@@ -9,5 +9,10 @@
     height: 95%;
     background-size: cover;
     background-position: center;
+  }
+  .collection-footer {
+    //background-color: rgb(252, 218, 218);
+    display: flex;
+    justify-content: space-between;
   }
 }
