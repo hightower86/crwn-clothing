@@ -8,7 +8,10 @@ export default class SignIn extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log('...');
+    this.setState({
+      email: '',
+      password: ''
+    });
   };
 
   handleChange = event => {
@@ -21,8 +24,8 @@ export default class SignIn extends Component {
   render() {
     return (
       <div className='sign-in'>
-        <h2>Sign In</h2>
-        <span>With your email and password</span>
+        <h2>I already have an account</h2>
+        <span>Sign in with your email and password</span>
         <form onSubmit={this.handleSubmit} autoComplete='off'>
           <input
             onChange={this.handleChange}
