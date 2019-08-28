@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import FormInput from '../FormInput';
+
 export default class SignIn extends Component {
   state = {
     email: '',
@@ -27,24 +29,22 @@ export default class SignIn extends Component {
         <h2>I already have an account</h2>
         <span>Sign in with your email and password</span>
         <form onSubmit={this.handleSubmit} autoComplete='off'>
-          <input
-            onChange={this.handleChange}
+          <FormInput
+            handleChange={this.handleChange}
             name='email'
             type='email'
             value={this.state.email}
-            placeholder='type your email'
-            require='true'
+            label='Email'
+            required
           />
-          <label htmlFor=''>Email</label>
-          <input
-            onChange={this.handleChange}
+          <FormInput
+            handleChange={this.handleChange}
             name='password'
             type='password'
-            placeholder='type your password'
             value={this.state.password}
-            require='true'
+            label='Password'
+            required
           />
-          <label htmlFor=''>Password</label>
 
           <input type='submit' value='sign in' />
         </form>
