@@ -1,11 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
+import SignIn from '../../SingIn/';
 import './SignInSignUp.scss';
-export default class SignInSignUp extends Component {
-  render() {
-    return (
-      <div>
-        <h1>SignIn Page</h1>
-      </div>
-    );
-  }
-}
+
+const SignInSignUp = () => {
+  return (
+    <div>
+      <h1>Sign In and Sign Up Page</h1>
+      <SignIn />
+    </div>
+  );
+};
+
+export default SignInSignUp;
