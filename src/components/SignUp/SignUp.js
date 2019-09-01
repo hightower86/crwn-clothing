@@ -50,7 +50,7 @@ export default class SignUp extends Component {
   };
 
   render() {
-    const { displayName, email, password, confirmPassword } = this.state;
+    const { email, password, confirmPassword } = this.state;
     return (
       <div className='sign-up'>
         <h2>I do not have an account</h2>
