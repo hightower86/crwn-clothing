@@ -3,7 +3,7 @@ import React from 'react';
 import './PreviewCollection.scss';
 import CollectionItem from '../CollectionItem';
 
-const PreviewCollection = props => {
+const PreviewCollection = (props) => {
   const { items, title } = props;
   return (
     <div className='collection-preview'>
@@ -11,8 +11,8 @@ const PreviewCollection = props => {
       <div className='preview'>
         {items
           .filter((item, idx) => idx < 4)
-          .map(({ id, ...otherProps }) => (
-            <CollectionItem key={id} {...otherProps} />
+          .map((item) => (
+            <CollectionItem key={item.id} item={item} />
             /* <div
               className='card'
               key={id}
