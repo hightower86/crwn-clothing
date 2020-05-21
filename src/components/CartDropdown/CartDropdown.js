@@ -11,8 +11,13 @@ const CartDropdown = ({ toggleCartHidden, items }) => {
     <div className='cart-dropdown'>
       <div className='cart-items'>
         {/* <pre>{JSON.stringify(items, null, 2)}</pre> */}
-        {items.map(({ name, id }) => (
-          <div key={id}>{name}</div>
+        {items.map(({ name, id, imageUrl, price, quantity }) => (
+          <div key={id} className='cart-item'>
+            <img style={{ width: '50px' }} src={imageUrl} alt={name} />
+            <span>{name}</span>
+            <span>{quantity}</span>
+            <span>${price * quantity}</span>
+          </div>
         ))}
       </div>
       <CustomButton onClick={toggleCartHidden}>GO TO CHECKOUT</CustomButton>
