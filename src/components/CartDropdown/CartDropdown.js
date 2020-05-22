@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import CustomButton from '../CustomButton/CustomButton';
 import { toggleCart } from '../../redux/cart/cart-actions';
-
+import { selectCartItems } from '../../redux/cart/cart-selectors';
 import './CartDropdown.scss';
 
 const CartDropdown = ({ toggleCartHidden, items }) => {
@@ -14,9 +14,10 @@ const CartDropdown = ({ toggleCartHidden, items }) => {
         {items.map(({ name, id, imageUrl, price, quantity }) => (
           <div key={id} className='cart-item'>
             <img style={{ width: '50px' }} src={imageUrl} alt={name} />
-            <span>{name}</span>
-            <span>{quantity}</span>
-            <span>${price * quantity}</span>
+            <div className='name-price'>
+              <p>{name}</p>
+              <p>{`${quantity} X $${price}`}</p>
+            </div>
           </div>
         ))}
       </div>
@@ -26,7 +27,7 @@ const CartDropdown = ({ toggleCartHidden, items }) => {
 };
 
 const mapStateToProps = (state) => ({
-  items: state.cart.cartItems,
+  items: selectCartItems(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
