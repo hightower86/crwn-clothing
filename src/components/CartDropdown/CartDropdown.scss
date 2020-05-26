@@ -35,3 +35,21 @@
     margin-top: auto;
   }
 }
+
+.cart-appear {
+  opacity: 0;
+}
+.cart-appear.cart-appear-active {
+  opacity: 1;
+  transition: opacity 500ms linear;
+}
+.cart-exit {
+  opacity: 1;
+}
+.cart-exit-active {
+  opacity: 0;
+  transition: opacity 500ms linear;
+}
+.cart-exit-done {
+  opacity: 0;
+}

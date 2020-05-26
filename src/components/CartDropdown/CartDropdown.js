@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import { useSpring, animated } from 'react-spring';
 import CustomButton from '../CustomButton/CustomButton';
 import { toggleCart } from '../../redux/cart/cart-actions';
 import { selectCartItems } from '../../redux/cart/cart-selectors';
 import './CartDropdown.scss';
 
-const CartDropdown = ({ toggleCartHidden, items }) => {
+const CartDropdown = ({ toggleCartHidden, items, hidden }) => {
+  const fade = useSpring({ from: { opacity: 0 }, opacity: 1 });
   return (
-    <div className='cart-dropdown'>
+    <animated.div className='cart-dropdown' style={fade}>
       <div className='cart-items'>
         {/* <pre>{JSON.stringify(items, null, 2)}</pre> */}
         {items.map(({ name, id, imageUrl, price, quantity }) => (
@@ -22,12 +23,13 @@ const CartDropdown = ({ toggleCartHidden, items }) => {
         ))}
       </div>
       <CustomButton onClick={toggleCartHidden}>GO TO CHECKOUT</CustomButton>
-    </div>
+    </animated.div>
   );
 };
 
 const mapStateToProps = (state) => ({
   items: selectCartItems(state),
+  hidden: state.cart.hidden,
 });
 
 const mapDispatchToProps = (dispatch) => ({
