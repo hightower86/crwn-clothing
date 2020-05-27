@@ -4,6 +4,7 @@ import { useSpring, animated } from 'react-spring';
 import CustomButton from '../CustomButton/CustomButton';
 import { toggleCart } from '../../redux/cart/cart-actions';
 import { selectCartItems } from '../../redux/cart/cart-selectors';
+import CartItem from '../CartItem';
 import './CartDropdown.scss';
 
 const CartDropdown = ({ toggleCartHidden, items, hidden }) => {
@@ -12,14 +13,8 @@ const CartDropdown = ({ toggleCartHidden, items, hidden }) => {
     <animated.div className='cart-dropdown' style={fade}>
       <div className='cart-items'>
         {/* <pre>{JSON.stringify(items, null, 2)}</pre> */}
-        {items.map(({ name, id, imageUrl, price, quantity }) => (
-          <div key={id} className='cart-item'>
-            <img style={{ width: '50px' }} src={imageUrl} alt={name} />
-            <div className='name-price'>
-              <p>{name}</p>
-              <p>{`${quantity} X $${price}`}</p>
-            </div>
-          </div>
+        {items.map((cartItem) => (
+          <CartItem item={cartItem} />
         ))}
       </div>
       <CustomButton onClick={toggleCartHidden}>GO TO CHECKOUT</CustomButton>
