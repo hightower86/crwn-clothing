@@ -9,6 +9,7 @@ import Header from './components/Header';
 import { setCurrentUser } from './redux/user/user-actions';
 import { selectCurrentUser } from './redux/user/user-selectors';
 import { createStructuredSelector } from 'reselect';
+import Checkout from './components/pages/Checkout';
 
 import './App.css';
 
@@ -57,6 +58,7 @@ class App extends React.Component {
               this.props.currentUser ? <Redirect to='/' /> : <SignInSignUp />
             }
           />
+          <Route exact path='/checkout' component={Checkout} />
         </Switch>
       </div>
     );

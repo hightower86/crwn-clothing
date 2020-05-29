@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useSpring, animated } from 'react-spring';
 import CustomButton from '../CustomButton/CustomButton';
 import { toggleCart } from '../../redux/cart/cart-actions';
@@ -17,7 +18,9 @@ const CartDropdown = ({ toggleCartHidden, items, hidden }) => {
           <CartItem item={cartItem} />
         ))}
       </div>
-      <CustomButton onClick={toggleCartHidden}>GO TO CHECKOUT</CustomButton>
+      <Link to={'/checkout'}>
+        <CustomButton onClick={toggleCartHidden}>GO TO CHECKOUT</CustomButton>
+      </Link>
     </animated.div>
   );
 };
