@@ -21,7 +21,6 @@ const Img = styled.img`
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-  // justify-content: space-between;
   margin-bottom: 5px;
   .name-price {
     padding: 10px;
