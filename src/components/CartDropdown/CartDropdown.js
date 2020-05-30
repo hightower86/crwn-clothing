@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import styled from 'styled-components';
 import { useSpring, animated } from 'react-spring';
 import CustomButton from '../CustomButton/CustomButton';
 import { toggleCart } from '../../redux/cart/cart-actions';
@@ -8,19 +9,26 @@ import { selectCartItems } from '../../redux/cart/cart-selectors';
 import CartItem from '../CartItem';
 import './CartDropdown.scss';
 
-const CartDropdown = ({ toggleCartHidden, items, hidden }) => {
+const EmptyMessage = styled.span`
+  font-size: 20px;
+  margin: 50px auto;
+  color: red;
+`;
+
+const CartDropdown = ({ toggleCartHidden, items, hidden, history }) => {
   const fade = useSpring({ from: { opacity: 0 }, opacity: 1 });
   return (
     <animated.div className='cart-dropdown' style={fade}>
       <div className='cart-items'>
-        {/* <pre>{JSON.stringify(items, null, 2)}</pre> */}
-        {items.map((cartItem) => (
-          <CartItem item={cartItem} />
-        ))}
+        {items.length ? (
+          items.map((cartItem) => <CartItem item={cartItem} />)
+        ) : (
+          <EmptyMessage>The Cart is Empty</EmptyMessage>
+        )}
       </div>
-      <Link to={'/checkout'}>
-        <CustomButton onClick={toggleCartHidden}>GO TO CHECKOUT</CustomButton>
-      </Link>
+      <CustomButton onClick={() => history.push('/checkout')}>
+        GO TO CHECKOUT
+      </CustomButton>
     </animated.div>
   );
 };
@@ -34,4 +42,6 @@ const mapDispatchToProps = (dispatch) => ({
   toggleCartHidden: () => dispatch(toggleCart()),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CartDropdown);
+export default withRouter(
+  connect(mapStateToProps, mapDispatchToProps)(CartDropdown)
+);
