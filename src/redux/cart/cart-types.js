@@ -2,5 +2,7 @@ const CartActionTypes = {
   TOGGLE_CART: 'TOGGLE_CART',
   ADD_CART_ITEM: 'ADD_CART_ITEM',
   CLEAR_CART_ITEM: 'CLEAR_CART_ITEM',
+  INC_QUANTITY: 'INC_QUANTITY',
+  DEC_QUANTITY: 'DEC_QUANTITY',
 };
 export default CartActionTypes;

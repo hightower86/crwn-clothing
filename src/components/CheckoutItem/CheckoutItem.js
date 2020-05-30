@@ -2,7 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 
-import { clearItemFromCart } from '../../redux/cart/cart-actions';
+import {
+  clearItemFromCart,
+  incQuantity,
+  decQuantity,
+} from '../../redux/cart/cart-actions';
 
 const ItemsRow = styled.div`
   width: 100%;
@@ -20,6 +24,15 @@ const ItemBlock = styled.div`
   }
 `;
 
+const ItemQuantity = styled.div`
+  width: 23%;
+  display: flex;
+`;
+
+const Quantity = styled.span`
+  margin: 0 10px;
+`;
+
 const RemoveItemBlock = styled(ItemBlock)`
   text-align: center;
   cursor: pointer;
@@ -33,6 +46,10 @@ const Img = styled.img`
   text-align: center;
 `;
 
+const IncDec = styled.span`
+  cursor: pointer;
+`;
+
 const CheckoutItem = ({ item, dispatch }) => {
   const { id, name, price, imageUrl, quantity } = item;
   return (
@@ -41,7 +58,11 @@ const CheckoutItem = ({ item, dispatch }) => {
         <Img src={imageUrl} alt={name} />
       </ItemBlock>
       <ItemBlock>{name}</ItemBlock>
-      <ItemBlock>{quantity}</ItemBlock>
+      <ItemQuantity>
+        <IncDec onClick={() => dispatch(decQuantity(item))}>&#10094;</IncDec>
+        <Quantity>{quantity}</Quantity>
+        <IncDec onClick={() => dispatch(incQuantity(item))}>&#10095;</IncDec>
+      </ItemQuantity>
       <ItemBlock>${price}</ItemBlock>
       <RemoveItemBlock onClick={() => dispatch(clearItemFromCart(item))}>
         &#10005;
