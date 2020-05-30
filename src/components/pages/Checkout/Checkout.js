@@ -1,7 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { selectCartItems } from '../../../redux/cart/cart-selectors';
+import {
+  selectCartItems,
+  selectCartTotal,
+} from '../../../redux/cart/cart-selectors';
 
 import styled from 'styled-components';
 
@@ -28,9 +31,6 @@ const CheckoutHeader = styled(ItemsRow)`
   height: 40px;
   position: sticky;
 `;
-const CheckoutBody = styled.div`
-  color: blue;
-`;
 
 const ItemBlock = styled.span`
   text-transform: capitalize;
@@ -44,7 +44,13 @@ const Img = styled.img`
   margin: 5px 0;
 `;
 
-const Checkout = ({ cartItems }) => {
+const Total = styled.span`
+  font-size: 30px;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+`;
+
+const Checkout = ({ cartItems, total }) => {
   return (
     <Wrapper>
       <CheckoutHeader>
@@ -62,17 +68,17 @@ const Checkout = ({ cartItems }) => {
           <ItemBlock>{name}</ItemBlock>
           <ItemBlock>{quantity}</ItemBlock>
           <ItemBlock>${price}</ItemBlock>
-          <ItemBlock>X</ItemBlock>
+          <ItemBlock>#1005;</ItemBlock>
         </ItemsRow>
       ))}
-
-      <pre>{JSON.stringify(cartItems, null, 2)}</pre>
+      <Total>Total: ${total}</Total>
     </Wrapper>
   );
 };
 
 const mapStateToProps = createStructuredSelector({
   cartItems: selectCartItems,
+  total: selectCartTotal,
 });
 
 export default connect(mapStateToProps)(Checkout);

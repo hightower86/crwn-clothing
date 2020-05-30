@@ -15,18 +15,25 @@ const EmptyMessage = styled.span`
   color: red;
 `;
 
-const CartDropdown = ({ toggleCartHidden, items, hidden, history }) => {
+const CartDropdown = ({ dispatch, items, hidden, history }) => {
   const fade = useSpring({ from: { opacity: 0 }, opacity: 1 });
   return (
     <animated.div className='cart-dropdown' style={fade}>
       <div className='cart-items'>
         {items.length ? (
-          items.map((cartItem) => <CartItem item={cartItem} />)
+          items.map((cartItem) => (
+            <CartItem key={cartItem.id} item={cartItem} />
+          ))
         ) : (
           <EmptyMessage>The Cart is Empty</EmptyMessage>
         )}
       </div>
-      <CustomButton onClick={() => history.push('/checkout')}>
+      <CustomButton
+        onClick={() => {
+          history.push('/checkout');
+          dispatch(toggleCart());
+        }}
+      >
         GO TO CHECKOUT
       </CustomButton>
     </animated.div>
@@ -38,10 +45,4 @@ const mapStateToProps = (state) => ({
   hidden: state.cart.hidden,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  toggleCartHidden: () => dispatch(toggleCart()),
-});
-
-export default withRouter(
-  connect(mapStateToProps, mapDispatchToProps)(CartDropdown)
-);
+export default withRouter(connect(mapStateToProps)(CartDropdown));
