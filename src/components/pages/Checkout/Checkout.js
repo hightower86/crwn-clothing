@@ -6,6 +6,8 @@ import {
   selectCartTotal,
 } from '../../../redux/cart/cart-selectors';
 
+import CheckoutItem from '../../../components/CheckoutItem';
+
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -39,10 +41,6 @@ const ItemBlock = styled.span`
     width: 8%;
   }
 `;
-const Img = styled.img`
-  height: 70px;
-  margin: 5px 0;
-`;
 
 const Total = styled.span`
   font-size: 30px;
@@ -50,7 +48,7 @@ const Total = styled.span`
   letter-spacing: 0.1rem;
 `;
 
-const Checkout = ({ cartItems, total }) => {
+const Checkout = ({ cartItems, total, dispatch }) => {
   return (
     <Wrapper>
       <CheckoutHeader>
@@ -60,16 +58,8 @@ const Checkout = ({ cartItems, total }) => {
           )
         )}
       </CheckoutHeader>
-      {cartItems.map(({ id, name, price, imageUrl, quantity }) => (
-        <ItemsRow key={id}>
-          <ItemBlock>
-            <Img src={imageUrl} alt={name} />
-          </ItemBlock>
-          <ItemBlock>{name}</ItemBlock>
-          <ItemBlock>{quantity}</ItemBlock>
-          <ItemBlock>${price}</ItemBlock>
-          <ItemBlock>#1005;</ItemBlock>
-        </ItemsRow>
+      {cartItems.map((item) => (
+        <CheckoutItem item={item} />
       ))}
       <Total>Total: ${total}</Total>
     </Wrapper>
