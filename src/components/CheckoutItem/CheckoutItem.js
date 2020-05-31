@@ -51,9 +51,9 @@ const IncDec = styled.span`
 `;
 
 const CheckoutItem = ({ item, dispatch }) => {
-  const { id, name, price, imageUrl, quantity } = item;
+  const { name, price, imageUrl, quantity } = item;
   return (
-    <ItemsRow key={id}>
+    <ItemsRow>
       <ItemBlock>
         <Img src={imageUrl} alt={name} />
       </ItemBlock>

@@ -54,12 +54,12 @@ const Checkout = ({ cartItems, total, dispatch }) => {
       <CheckoutHeader>
         {['Product', 'Description', 'Quantity', 'Price', 'Remove'].map(
           (item) => (
-            <ItemBlock>{item}</ItemBlock>
+            <ItemBlock key={item}>{item}</ItemBlock>
           )
         )}
       </CheckoutHeader>
       {cartItems.map((item) => (
-        <CheckoutItem item={item} />
+        <CheckoutItem key={item.id} item={item} />
       ))}
       <Total>Total: ${total}</Total>
     </Wrapper>
